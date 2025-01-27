@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
+    <title>Stencil Component Starter</title>
+
+    <style>
+
+      body {
+        font-family: sans-serif;
+      }
+
+      .side-nav ul {
+        list-style: none;
+      }
+
+      .side-nav li {
+        margin: 1rem 0;
+      }
+
+      .side-nav a {
+        text-decoration: none;
+        color: black;
+      }
+
+      /* slotted selectors only allow to style the  first element in it, not the nested ones, so those have to be changed here, in the light dom */
+      
+    </style>
+
+    <script type="module" src="/build/web-components-stencil.esm.js"></script>
+    <script nomodule src="/build/web-components-stencil.js"></script>
+  </head>
+  <body>
+    <button id="side-drawer-btn">Open Side Menu</button>
+
+    <nc-side-drawer title="Main Menu">
+      <nav class="side-nav">
+        <ul>
+          <li><a href="/">Link 1</a></li>
+          <li><a href="/">Link 2</a></li>
+          <li><a href="/">Link 3</a></li>
+        </ul>
+      </nav>
+    
+    </nc-side-drawer>
+
+    <script>
+
+      const sideDrawerButton = document.querySelector('#side-drawer-btn');
+
+      const sideDrawer = document.querySelector('nc-side-drawer');
+
+      sideDrawerButton.addEventListener('click', () => {
+        if (!sideDrawer.opened) {
+          console.log('Opening side drawer...');
+          // This opens the drawer by setting a property:
+          // sideDrawer.open = true;
+
+          // This opens the drawer by calling a class method:
+          sideDrawer.open();
+        }
+      });
+
+      setTimeout(() => {
+        // the following doesn't change the attribute: For that the Prop has to be configured with @Prop({ reflect: true }) 
+        //sideDrawer.title = 'New title'
+        //sideDrawer.setAttribute('title', 'Title changed via Attribute');
+      }, 3000);
+      
+    </script>
+
+  </body>
+</html>
